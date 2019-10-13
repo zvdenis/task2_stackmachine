@@ -11,13 +11,41 @@
 
 
 #include "int_stack.h"
+#include <iostream>
 
-// TODO: add necessary headers here
-// #include <...
 
 namespace xi {
 
 // TODO: add method definitions here
 
+    void IntStack::push(int el) {
+        _head++;
+        if (_head >= _ssize) throw std::logic_error("Out of bounds exception");
+        _stack[_head] = el;
+    }
+
+    int IntStack::pop() {
+        if (_head < 0) throw std::logic_error("Out of bounds exception");
+        int value = _stack[_head];
+        _head--;
+        return value;
+    }
+
+    int IntStack::top() {
+        if (_head < 0) throw std::logic_error("Out of bounds exception");
+        return _stack[_head];
+    }
+
+    void IntStack::clear() {
+        _head = 0;
+    }
+
+    bool IntStack::isEmpty() const {
+        return _head == 0;
+    }
+
+    bool IntStack::isFull() const {
+        return _head == _ssize - 1;
+    }
 } // namespace xi
 
