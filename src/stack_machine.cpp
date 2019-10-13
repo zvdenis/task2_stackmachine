@@ -15,7 +15,6 @@
 #include <sstream>
 #include <iostream>
 #include <stdlib.h>
-#include <cmath>
 
 namespace xi {
 
@@ -119,7 +118,10 @@ namespace xi {
     int PowOp::operation(char op, int a, int b, int c) {
         if (op != '^')
             throw std::logic_error("Operation other than Plus (!) are not supported");
-        return pow(a, b);
+        int res = 1;
+        for(int i = 0;i < b;i++)
+            res *= a;
+        return res;
     }
 
     IOperation::Arity PowOp::getArity() const {
