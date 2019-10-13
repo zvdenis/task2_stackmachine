@@ -48,6 +48,18 @@ namespace xi {
         return true;
     }
 
+    void applyOperation(IOperation *operation, char symbol, IntStack &_s) {
+        int arity = operation->getArity() + 1;
+        int a = 0, b = 0, c = 0;
+        if (arity >= 1) {
+            a = _s.pop();
+        }
+        if (arity == 2) {
+            b = _s.pop();
+            std::swap(a, b);
+        }
+        _s.push(operation->operation(symbol, a, b));
+    }
 
 //==============================================================================
 // class PlusOp
@@ -152,14 +164,15 @@ namespace xi {
                 continue;
             }
             if (token.size() == 1) {
-                char op;
+                char op = token[0];
                 if (op != '+' && op != '/' && op != '!' && op != '^')
                     throw std::logic_error("Can't parse string");
                 IOperation *operation = getOperation(token[0]);
-
+                applyOperation(operation, op, _s);
+                continue;
             }
             throw std::logic_error("Can't parse string");
         }
-        return 0;
+        return _s.top();
     }
 } // namespace xi
