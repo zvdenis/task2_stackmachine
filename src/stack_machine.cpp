@@ -85,7 +85,7 @@ namespace xi {
 
     int DivOp::operation(char op, int a, int b, int /*c*/) {
         if (op != '/')
-            throw std::logic_error("Operation other than Plus (/) are not supported");
+            throw std::logic_error("Operation other than Division (/) are not supported");
         if (b == 0) return INT_MAX * (a > 0 ? 1 : -1);
         return a / b;
     }
@@ -102,7 +102,7 @@ namespace xi {
 
     int SigChangeOp::operation(char op, int a, int /*b*/, int /*c*/) {
         if (op != '!')
-            throw std::logic_error("Operation other than Plus (!) are not supported");
+            throw std::logic_error("Operation other than sign change (!) are not supported");
         return -a;
     }
 
@@ -117,7 +117,7 @@ namespace xi {
 
     int PowOp::operation(char op, int a, int b, int c) {
         if (op != '^')
-            throw std::logic_error("Operation other than Plus (!) are not supported");
+            throw std::logic_error("Operation other than power (!) are not supported");
         int res = 1;
         for(int i = 0;i < b;i++)
             res *= a;
