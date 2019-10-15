@@ -21,8 +21,7 @@
 
 using namespace std;
 
-void testStack()
-{
+void testStack() {
     xi::IntStack s;
 
     s.push(42);
@@ -35,15 +34,14 @@ void testStack()
     try {
         s.pop();
     }
-    catch(std::logic_error& /*e*/)
-    {
+    catch (std::logic_error & /*e*/) {
         std::cout << "An expected exception on pop() operation is succesfully catched\n";
         exc = true;
     }
     assert(exc);
 
     // test for overflow
-    for(int i = 0; i < xi::IntStack::STACK_SIZE; ++i)
+    for (int i = 0; i < xi::IntStack::STACK_SIZE; ++i)
         s.push(i);
 
     // next element cannot be added and, thus, en exception should be thrown
@@ -51,8 +49,7 @@ void testStack()
     try {
         s.push(43);
     }
-    catch(std::logic_error& /*e*/)
-    {
+    catch (std::logic_error & /*e*/) {
         std::cout << "An expected exception on push() operation is succesfully catched\n";
         exc = true;
     }
@@ -61,8 +58,7 @@ void testStack()
     //int b = 0;
 }
 
-void testStackMachine()
-{
+void testStackMachine() {
 #ifdef PLUS_OP
     xi::StackMachine sm;
     xi::PlusOp plusop;
@@ -76,8 +72,7 @@ void testStackMachine()
 #endif // PLUS_OP
 }
 
-int main()
-{
+int main() {
     cout << "Hello, World!" << endl;
 
     testStack();

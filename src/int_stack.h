@@ -25,71 +25,71 @@
 #include <stddef.h>     // need fo size_t
 
 
-
 namespace xi {
 
 
 /** Declares a stack of integers.
  */
-class IntStack {
-public:
-    // const
-    static const int STACK_SIZE = 1024;     ///< Defines a default value for maximum number of stack elements
+    class IntStack {
+    public:
+        // const
+        static const int STACK_SIZE = 1024;     ///< Defines a default value for maximum number of stack elements
 
-public:
-    // Constructors
-    IntStack(size_t sz = STACK_SIZE);           ///< Default constructor
-    ~IntStack();
+    public:
+        // Constructors
+        IntStack(size_t sz = STACK_SIZE);           ///< Default constructor
+        ~IntStack();
 
-private:
-    // Большая тройка.
-    // Не нужно реализовывать, мы просто запрещаем пользоваться оп и кк извне.
-    IntStack(const IntStack& copy);
-    IntStack& operator=(const IntStack &other);
+    private:
+        // Большая тройка.
+        // Не нужно реализовывать, мы просто запрещаем пользоваться оп и кк извне.
+        IntStack(const IntStack &copy);
 
-public:
-    //----<Main ADT interface>----
+        IntStack &operator=(const IntStack &other);
 
-    /** Pushes a given element onto the stack.
-     *
-     *  If no more elements can be placed onto the stack due to its overflow an std::logic_error is thrown.
-     */
-    void push(int el);
+    public:
+        //----<Main ADT interface>----
 
-    /** Pops an element from the stack and returns its value.
-     *
-     *  If no elements stored in the stack, a std::logic_error is thrown.
-     */
-    int pop();
+        /** Pushes a given element onto the stack.
+         *
+         *  If no more elements can be placed onto the stack due to its overflow an std::logic_error is thrown.
+         */
+        void push(int el);
 
-    /** Looks up an element from the top of the stack and returns its value.
-     *
-     *  If no elements stored in the stack, a std::logic_error is thrown.
-     */
-    int top();
+        /** Pops an element from the stack and returns its value.
+         *
+         *  If no elements stored in the stack, a std::logic_error is thrown.
+         */
+        int pop();
 
-    /** Clears the stack and makes it empty.
-     *
-     *  Often named as makeEmpty or similar
-     */
-    void clear();
+        /** Looks up an element from the top of the stack and returns its value.
+         *
+         *  If no elements stored in the stack, a std::logic_error is thrown.
+         */
+        int top();
 
-public:
-    // Non classic ADT helper methods
+        /** Clears the stack and makes it empty.
+         *
+         *  Often named as makeEmpty or similar
+         */
+        void clear();
 
-    /** Returns true if the stack is empty, false otherwise */
-    bool isEmpty() const;
+    public:
+        // Non classic ADT helper methods
 
-    /** Returns true if the stack is full, false otherwise */
-    bool isFull() const;
+        /** Returns true if the stack is empty, false otherwise */
+        bool isEmpty() const;
+
+        /** Returns true if the stack is full, false otherwise */
+        bool isFull() const;
 
 
-protected:
-    //int     _stack[STACK_SIZE];             ///< Stack elements as an fixed size array
-    int*    _stack;                         ///< Stack as a dynamic array
-    size_t  _ssize;                         ///< Actual stack size
-    size_t  _head;                          ///< Stack head
-}; // class IntStack
+    protected:
+        //int     _stack[STACK_SIZE];             ///< Stack elements as an fixed size array
+        int *_stack;                         ///< Stack as a dynamic array
+        size_t _ssize;                         ///< Actual stack size
+        size_t _head;                          ///< Stack head
+    }; // class IntStack
 
 
 } // namespace xi
